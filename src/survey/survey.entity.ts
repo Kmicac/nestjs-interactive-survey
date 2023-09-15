@@ -1,4 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { PreferredLanguage } from './enums/preferred-language.enum';
+import { HowFound } from './enums/how-found.enum';
 
 @Entity('interactivesurvey') 
 export class Survey {
@@ -14,11 +16,11 @@ export class Survey {
   @Column({ type: 'date', nullable: true }) 
   start_date: Date;
 
-  @Column()
-  preferred_language: string;
+  @Column({ type: 'enum', enum: PreferredLanguage })
+  preferred_language: PreferredLanguage;
 
-  @Column()
-  how_found: string;
+  @Column({ type: 'enum', enum: HowFound })
+  how_found: HowFound;
 
   @Column({ type: 'boolean', nullable: true }) 
   newsletter_subscription: boolean;
