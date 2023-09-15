@@ -1,9 +1,9 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, BaseEntity } from 'typeorm';
 import { PreferredLanguage } from './enums/preferred-language.enum';
 import { HowFound } from './enums/how-found.enum';
 
 @Entity('interactivesurvey') 
-export class Survey {
+export class Survey extends BaseEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
@@ -13,7 +13,7 @@ export class Survey {
   @Column()
   phone_number: string;
 
-  @Column({ type: 'date', nullable: true }) 
+  @Column({ type: 'date', nullable: true, default: () => 'CURRENT_TIMESTAMP' }) 
   start_date: Date;
 
   @Column({ type: 'enum', enum: PreferredLanguage })

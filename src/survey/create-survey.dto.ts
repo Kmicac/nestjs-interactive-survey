@@ -1,4 +1,6 @@
-import { IsNotEmpty, IsString, IsOptional, IsDate, IsBoolean } from "class-validator";
+import { IsNotEmpty, IsString, IsOptional, IsDate, IsBoolean, IsEnum } from "class-validator";
+import { PreferredLanguage } from "./enums/preferred-language.enum";
+import { HowFound } from "./enums/how-found.enum";
 
 export class CreateSurveyDto {
     @IsNotEmpty()
@@ -10,8 +12,15 @@ export class CreateSurveyDto {
     phone_number: string;
 
     @IsOptional()
-    @IsDate()
     start_date: Date;
+
+    @IsNotEmpty()
+    @IsEnum(PreferredLanguage)
+    preferred_language?: PreferredLanguage;
+
+    @IsNotEmpty()
+    @IsEnum(HowFound)
+    how_found?: HowFound;
 
     @IsOptional()
     @IsBoolean()
