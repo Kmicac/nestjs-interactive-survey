@@ -37,14 +37,14 @@ export class SurveyService {
         return survey;
     }
 
-    async updateSurvey(id: number, body: any): Promise<SurveyResponse> {
+    async updateSurvey(id: number, updateSurveyDto: CreateSurveyDto): Promise<SurveyResponse> {
         const survey = await this.surveyRepository.findOne({ where: { id: id } });
         
         if (!survey) {
             throw new NotFoundException(`Sorry this survey couldn't be found`);
         }
 
-        this.surveyRepository.merge(survey, body);
+        Object.assign(survey, updateSurveyDto);
 
         return this.surveyRepository.save(survey);
     }

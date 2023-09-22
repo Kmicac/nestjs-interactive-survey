@@ -19,11 +19,12 @@ export class SurveyController {
         return await this.surveyService.createSurvey(createSurveyDto);
     }
 
-    @Patch('/:id')
+    @Patch('/:id/update')
+    @UsePipes(ValidationPipe)
     async updateSurvey(
         @Param('id') id: number, 
-        @Body() body: any): Promise<SurveyResponse> {
-        return await this.surveyService.updateSurvey(id, body);
+        @Body() updateSurveyDto: CreateSurveyDto): Promise<SurveyResponse> {
+        return await this.surveyService.updateSurvey(id, updateSurveyDto);
     };
     
 }
