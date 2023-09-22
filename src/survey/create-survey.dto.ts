@@ -1,8 +1,9 @@
-import { IsNotEmpty, IsString, IsOptional, IsDate, IsBoolean, IsEnum } from "class-validator";
+import { IsNotEmpty, IsString, IsOptional, IsBoolean, IsEnum } from "class-validator";
 import { PreferredLanguage } from "./enums/preferred-language.enum";
 import { HowFound } from "./enums/how-found.enum";
 
 export class CreateSurveyDto {
+        
     @IsNotEmpty()
     @IsString()
     full_name: string;

@@ -1,17 +1,29 @@
-import { Body, Controller, Post, UsePipes, ValidationPipe } from '@nestjs/common';
-import { Survey } from './survey.entity';
+import { Body, Controller, Post, Get, Param, UsePipes, ValidationPipe, Patch } from '@nestjs/common';
 import { CreateSurveyDto } from './create-survey.dto';
-import { PreferredLanguage } from './enums/preferred-language.enum';
-import { HowFound } from './enums/how-found.enum';
 import { SurveyService } from './survey.service';
+import { SurveyResponse } from './survey.entity';
+import { PreferredLanguage } from './enums/preferred-language.enum';
 
 @Controller('survey')
 export class SurveyController {
     constructor(private surveyService: SurveyService) {}
 
+    @Get('/:id')
+    async getSurveyById(@Param('id') id: number): Promise<SurveyResponse> {
+            return await this.surveyService.getSurveyById(id)
+    };
+    
     @Post()
     @UsePipes(ValidationPipe)
-    createSurvey(@Body() createSurveyDto: CreateSurveyDto): Promise<Survey> {
-        return this.surveyService.createSurvey(createSurveyDto);
+    async createSurvey(@Body() createSurveyDto: CreateSurveyDto): Promise<SurveyResponse> {
+        return await this.surveyService.createSurvey(createSurveyDto);
     }
+
+    @Patch('/:id')
+    async updateSurvey(
+        @Param('id') id: number, 
+        @Body() body: any): Promise<SurveyResponse> {
+        return await this.surveyService.updateSurvey(id, body);
+    };
+    
 }

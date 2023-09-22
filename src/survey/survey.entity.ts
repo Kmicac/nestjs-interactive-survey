@@ -3,9 +3,9 @@ import { PreferredLanguage } from './enums/preferred-language.enum';
 import { HowFound } from './enums/how-found.enum';
 
 @Entity('interactivesurvey') 
-export class Survey extends BaseEntity {
-  @PrimaryGeneratedColumn('uuid')
-  id: string;
+export class SurveyResponse extends BaseEntity {
+  @PrimaryGeneratedColumn()
+  id: number;
 
   @Column()
   full_name: string;
