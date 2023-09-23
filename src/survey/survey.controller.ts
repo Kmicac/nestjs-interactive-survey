@@ -2,7 +2,7 @@ import { Body, Controller, Post, Get, Param, UsePipes, ValidationPipe, Patch } f
 import { CreateSurveyDto } from './create-survey.dto';
 import { SurveyService } from './survey.service';
 import { SurveyResponse } from './survey.entity';
-import { PreferredLanguage } from './enums/preferred-language.enum';
+
 
 @Controller('survey')
 export class SurveyController {
