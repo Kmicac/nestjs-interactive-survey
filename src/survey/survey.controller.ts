@@ -16,7 +16,8 @@ export class SurveyController {
     @Post()
     @UsePipes(ValidationPipe)
     async createSurvey(@Body() createSurveyDto: CreateSurveyDto): Promise<SurveyResponse> {
-        return await this.surveyService.createSurvey(createSurveyDto);
+        const survey = await this.surveyService.createSurvey(createSurveyDto);
+        return survey;
     }
 
     @Patch('/:id/update')

@@ -3,7 +3,6 @@ import { PreferredLanguage } from "./enums/preferred-language.enum";
 import { HowFound } from "./enums/how-found.enum";
 
 export class CreateSurveyDto {
-        
     @IsNotEmpty()
     @IsString()
     full_name: string;

@@ -35,7 +35,7 @@ export class SurveyService {
         await survey.save();
 
         return survey;
-    }
+    } 
 
     async updateSurvey(id: number, updateSurveyDto: CreateSurveyDto): Promise<SurveyResponse> {
         const survey = await this.surveyRepository.findOne({ where: { id: id } });
